@@ -1,0 +1,7 @@
+__pycache__/
+*.pyc
+data/
+.ipynb_checkpoints/
+# trained models are large: share via GitHub Releases / Git LFS / Drive instead of normal commits
+models/*.h5
+models/*.keras
