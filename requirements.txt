@@ -6,4 +6,4 @@ seaborn
 scikit-learn
 pillow
 h5py
-streamlit
+#streamlit
