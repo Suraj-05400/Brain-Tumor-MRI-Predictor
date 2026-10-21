@@ -108,7 +108,7 @@ def authenticate(username, password):
         now = time.time()
         if row is None:
             _hash(password, _DUMMY_SALT)                       # same work as a real check (no user enumeration by timing)
-            return None, "Invalid username or password."
+            return None, "Invalid username or password. Please register first!"
         if row["locked_until"] > now:
             mins = int((row["locked_until"] - now) // 60) + 1
             return None, f"Too many failed attempts. Try again in about {mins} minute(s)."
@@ -119,7 +119,7 @@ def authenticate(username, password):
         locked = now + LOCK_SECONDS if fails >= MAX_FAILS else 0
         c.execute("UPDATE users SET failed_attempts = ?, locked_until = ? WHERE id = ?",
                   (0 if locked else fails, locked, row["id"]))
-        return None, "Invalid username or password."
+        return None, "Invalid username or password. Please register first!"
 
 
 def delete_user(user_id):
